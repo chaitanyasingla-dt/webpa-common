@@ -547,6 +547,9 @@ func (m *manager) writePump(d *device, w WriteCloser, pinger func() error, close
 
 		case <-pingTicker.C:
 			writeError = pinger()
+			d.debugLog.Log(logging.MessageKey(), "Ping error message>>>>>>>>>")
+			d.debugLog.Log(logging.MessageKey(), writeError.Error())
+			d.debugLog.Log(logging.MessageKey(), writeError)
 		}
 	}
 }
